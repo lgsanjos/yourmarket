@@ -17,7 +17,6 @@ console.log('Setting up routes');
 app.get('/get_categories', function(req, res, next) {
     output = new category(null).getAllCategories();
     console.log(output);
-
     res.json(output);
 });
 

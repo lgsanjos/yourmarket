@@ -1,5 +1,7 @@
 package br.com.sasolucoes.yourmarket;
 
+import java.util.logging.Logger;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,28 +15,31 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-	TextView welcomeText;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		
 	}
 
 	private void syncCategories() {
-		try {
-			String response = HttpRequester.get("http://localhost:8080/get_categories");
-			welcomeText.setText(response);
-		} catch (Exception e) {
-			welcomeText.setText("");
-			Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-		}
+		
+		new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+	        	final String url = "http://192.168.56.1:8080/get_categories";
+	    		try {
+	    			String response = HttpRequester.get(url);
+	    			Logger.getAnonymousLogger().info(response);
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+		    }
+		}).start();
 	}
 
 	@Override
@@ -50,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			welcomeText = (TextView) findViewById(R.id.welcome_text);
 			syncCategories();
 			return true;
 		}

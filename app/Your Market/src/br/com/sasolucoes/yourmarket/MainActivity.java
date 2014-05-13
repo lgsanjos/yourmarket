@@ -1,29 +1,36 @@
 package br.com.sasolucoes.yourmarket;
 
-import java.net.URL;
+import java.util.List;
 
-import br.com.sasolucoes.yourmarket.network.HttpGetter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
+import br.com.sasolucoes.yourmarket.category.Category;
+import br.com.sasolucoes.yourmarket.category.CategoryRepository;
 
 public class MainActivity extends Activity {
 
+	private CategoryRepository categoryRepository = new CategoryRepository();
+	private TextView listCategorias;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		listCategorias = (TextView) findViewById(R.id.list_categorias);
 	}
 
 	private void syncCategories() {
 		try {
-			HttpGetter get = new HttpGetter();
-			get.execute(new URL("http://192.168.56.1:8080/get_categories"));
-			get.get();
-			String resp = get.getResponse().toString();
-			Toast.makeText(getApplicationContext(), resp, Toast.LENGTH_SHORT).show();
+			List<Category> categories = categoryRepository.selectAll();
+			String text = "";
+			
+			for (Category cat : categories)
+				text += cat.name + " - " + cat.description + "\n"; 
+			
+			listCategorias.setText(text);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

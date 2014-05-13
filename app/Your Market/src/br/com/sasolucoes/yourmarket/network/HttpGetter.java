@@ -1,5 +1,7 @@
 package br.com.sasolucoes.yourmarket.network;
 
+import static br.com.sasolucoes.yourmarket.network.ServerUtils.HTTP_STATUS_CODE_OK;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +21,6 @@ import android.util.Log;
 public class HttpGetter extends AsyncTask<URL, Void, Void> {
 
 	private StringBuilder builder = new StringBuilder();
-	private final int HTTP_STATUS_CODE_OK = 200;
 	
 	@Override
 	protected Void doInBackground(URL... urls) {

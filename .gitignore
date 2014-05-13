@@ -2,11 +2,6 @@
 .project
 .classpath
 
-# Package Files #
-*.jar
-*.war
-*.ear
-
 # Built application files
 *.apk
 *.ap_

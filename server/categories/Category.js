@@ -4,4 +4,6 @@ function Category() {
 	this.name = '';
 	this.description = '';
 	
-}
+};
+
+module.exports = Category;

@@ -22,11 +22,11 @@ function CategoryService() {
   	return [ cat1, cat2, cat3 ];
   };
   
-  this.getSubCategories = function() {
+  this.getSubCategoriesFromId = function(id) {
 	var subcat1 = new SubCategory();
 	subcat1.id = 1;
-	subcat1.category_id = 1;
-	subcat1.description = 'subcategory 1';
+	subcat1.category_id = id;
+	subcat1.description = 'subcategory 1 from cat ' + id;
 	
 	return [ subcat1 ];
   };

@@ -1,7 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
 
-var category = require(__dirname + '/categories/CategoryService.js');
+var CategoryService = require(__dirname + '/categories/CategoryService.js');
 
 var app = express();
 
@@ -15,11 +15,13 @@ app.set('view engine', 'jade');
 console.log('Setting up routes');
 
 app.get('/get_categories', function(req, res, next) {
-    output = new category(null).getAllCategories();
+    categories = new CategoryService().getAllCategories();
+	subCategories = new CategoryService().getSubCategories();
+	
+	output = categories.concat(subCategories);
     console.log(output);
     res.json(output);
 });
-
 
 app.listen(8080);
 console.log('Server started');

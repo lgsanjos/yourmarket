@@ -9,14 +9,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonUtils<T> {
 	
-	private static <T> JsonUtils<T> create(T t) {
-		return new JsonUtils<T>();
-	}
-	
-	public static <T> JsonUtils<T> get(Class clazz) {
+	public static <T> JsonUtils<T> get(Class<T> clazz) {
 		try {
-			Class obj = (Class) clazz.newInstance();
-			return (JsonUtils<T>) create(obj);
+			return new JsonUtils<T>();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -24,7 +19,7 @@ public class JsonUtils<T> {
 		
 	}
 	
-	public List<T> jsonToObject(String json) {
+	public List<T> convert(String json) {
 		Gson gson = new Gson();
 		Type type = new TypeToken<ArrayList<T>>() {	}.getType();
 		

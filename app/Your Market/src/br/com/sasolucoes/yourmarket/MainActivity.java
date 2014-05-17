@@ -1,5 +1,8 @@
 package br.com.sasolucoes.yourmarket;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import android.app.Activity;
@@ -9,6 +12,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import br.com.sasolucoes.yourmarket.category.Category;
 import br.com.sasolucoes.yourmarket.category.CategoryRepository;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 
 public class MainActivity extends Activity {
 
@@ -25,14 +32,15 @@ public class MainActivity extends Activity {
 	private void syncCategories() {
 		try {
 			List<Category> categories = categoryRepository.selectAll();
-			String text = "";
 			
+			String text = "";
 			for (Category cat : categories)
 				text += cat.name + " - " + cat.description + "\n"; 
 			
 			listCategorias.setText(text);
 		} catch (Exception e) {
 			e.printStackTrace();
+			listCategorias.setText(e.getMessage());
 		}
 	}
 

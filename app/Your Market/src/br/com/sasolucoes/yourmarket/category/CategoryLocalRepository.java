@@ -6,7 +6,7 @@ import java.util.List;
 
 class CategoryLocalRepository {
 
-	private ArrayList<Category> persisted = new ArrayList<Category>();
+	private List<Category> persisted = new ArrayList<Category>();
 	
 	public List<Category> selectAll() {
 		return persisted;

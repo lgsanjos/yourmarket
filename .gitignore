@@ -1,6 +1,7 @@
 # Eclipse things
 .project
 .classpath
+.settings
 
 # Built application files
 *.apk

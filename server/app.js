@@ -1,6 +1,6 @@
 var express = require('express');
 var logger = require('morgan');
-var CategoryRoutes = require(__dirname + '/categories/Routes.js');
+var categoryRoutes = require( __dirname + '/categories/Routes.js');
 
 var app = express();
 
@@ -8,12 +8,13 @@ console.log('Environment: ');
 console.log('dirname = ' + __dirname);
 console.log('Setting up configuration');
 
+
 app.use(logger('dev'));
 app.set('view engine', 'jade');
 
 console.log('Setting up routes');
-app.get('/get_categories', CategoryRoutes.getCategories);
-app.get('/get_subcategories/:id', CategoryRoutes.getSubcategoriesFromId);
+
+app.use('/', categoryRoutes);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

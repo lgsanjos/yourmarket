@@ -23,7 +23,8 @@ public class JsonUtils<T> {
 		Gson gson = new Gson();
 		Type type = new TypeToken<ArrayList<T>>() {	}.getType();
 		
-		return gson.fromJson(json, type);
+		List<T> fromJson = gson.fromJson(json, type);
+		return fromJson;
 	}
 	
 }

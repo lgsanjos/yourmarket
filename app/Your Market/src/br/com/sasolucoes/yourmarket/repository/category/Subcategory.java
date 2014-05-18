@@ -1,6 +1,4 @@
-package br.com.sasolucoes.yourmarket.repository.subcategory;
-
-import br.com.sasolucoes.yourmarket.repository.category.Category;
+package br.com.sasolucoes.yourmarket.repository.category;
 
 import com.google.gson.annotations.SerializedName;
 

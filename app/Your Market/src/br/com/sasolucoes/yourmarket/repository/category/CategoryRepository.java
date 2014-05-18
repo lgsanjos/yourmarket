@@ -3,7 +3,7 @@ package br.com.sasolucoes.yourmarket.repository.category;
 import java.util.List;
 
 import android.util.Log;
-import br.com.sasolucoes.yourmarket.Repository;
+import br.com.sasolucoes.yourmarket.repository.Repository;
 
 public class CategoryRepository extends Repository {
 

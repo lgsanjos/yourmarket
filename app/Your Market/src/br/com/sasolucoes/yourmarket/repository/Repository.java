@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket;
+package br.com.sasolucoes.yourmarket.repository;
 
 abstract public class Repository {
 

@@ -35,7 +35,7 @@ public class HttpGetter extends AsyncTask<URL, Void, Void> {
 				parseReponseToString(response);
 				Log.v("HttpGetter", "Your data: " + builder.toString());
 			} else {
-				Log.e("HttpGetter", "Failed. Status: " + response.getStatusLine().getStatusCode());
+				Log.e("HttpGetter", "Failed with URL " + urls[0].toString() + ". Status: " + response.getStatusLine().getStatusCode());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

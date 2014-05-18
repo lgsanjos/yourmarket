@@ -15,7 +15,7 @@ public class ServerUtils {
 		return "http://" + address + ":" + port + "/";
 	}
 	
-	private static URL createUrl(final String url) {
+	public static URL createUrl(final String url) {
 		try {
 			return new URL(url);
 		} catch (MalformedURLException e) {

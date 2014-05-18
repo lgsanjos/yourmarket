@@ -11,8 +11,15 @@
     
     <item
         android:id="@+id/sync_categories"
-        android:orderInCategory="100"
+        android:orderInCategory="110"
         android:title="@string/sync_categories"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/sync_subcategories"
+        android:orderInCategory="120"
+        android:title="@string/sync_subcategories"
+        app:showAsAction="never"/>
+    
 </menu>
+

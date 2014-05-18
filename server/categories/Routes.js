@@ -8,6 +8,12 @@ router.get('/get_categories', function(req, res, next) {
     res.json(output);
 });
 
+router.get('/get_subcategories', function(req, res, next) {
+    var output = new CategoryService().getSubCategories();
+    console.log(output);
+    res.json(output);
+});
+
 router.get('/get_subcategories/:id', function(req, res, next) {
     id = req.params.id;
     var output = new CategoryService().getSubCategoriesFromId(id);

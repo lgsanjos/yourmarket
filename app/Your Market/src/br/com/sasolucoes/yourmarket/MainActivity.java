@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import br.com.sasolucoes.yourmarket.category.Category;
-import br.com.sasolucoes.yourmarket.category.CategoryRepository;
+import br.com.sasolucoes.yourmarket.repository.category.Category;
+import br.com.sasolucoes.yourmarket.repository.category.CategoryRepository;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

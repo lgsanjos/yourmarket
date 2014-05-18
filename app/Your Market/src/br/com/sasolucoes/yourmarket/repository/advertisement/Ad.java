@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class Ad extends AdSummary {
 
 	@SerializedName("categoryId")
-	public int categoryId;
+	public Integer categoryId;
 	
 	@SerializedName("subcategoryId")
-	public int subcategoriId;
+	public Integer subcategoriId;
 	
 	@SerializedName("description")
 	public String description;
@@ -29,6 +29,6 @@ public class Ad extends AdSummary {
 	public String pictureFive;
 	
 	@SerializedName("advertiserId")
-	public int advertiserId;
-	
+	public Integer advertiserId;
+
 }

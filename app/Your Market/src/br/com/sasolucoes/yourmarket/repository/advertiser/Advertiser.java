@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Advertiser {
 
 	@SerializedName("id")
-	public int id;
+	public Integer id;
 	
 	@SerializedName("name")
 	public String name;
@@ -18,5 +18,15 @@ public class Advertiser {
 	
 	@SerializedName("phone")
 	public String phone;
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Advertiser))
+			return false;
+		
+		Advertiser obj = (Advertiser)o;
+		boolean equals = super.equals(o);
+		equals &= id.equals(obj.id);
+		return equals;
+	}	
 }

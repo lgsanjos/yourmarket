@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket.repository.category;
+package br.com.sasolucoes.yourmarket.business.category;
 
 import java.util.ArrayList;
 import java.util.HashSet;

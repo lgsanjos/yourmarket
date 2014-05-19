@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket.repository.category;
+package br.com.sasolucoes.yourmarket.business.category;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

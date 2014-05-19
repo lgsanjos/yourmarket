@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket.repository.advertisement;
+package br.com.sasolucoes.yourmarket.business.advertisement;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import br.com.sasolucoes.yourmarket.repository.category.Category;
-import br.com.sasolucoes.yourmarket.repository.category.CategoryRepository;
-import br.com.sasolucoes.yourmarket.repository.category.Subcategory;
-import br.com.sasolucoes.yourmarket.repository.category.SubcategoryRepository;
+import br.com.sasolucoes.yourmarket.business.category.Category;
+import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
+import br.com.sasolucoes.yourmarket.business.category.Subcategory;
+import br.com.sasolucoes.yourmarket.business.category.SubcategoryRepository;
 
 
 public class MainActivity extends Activity {

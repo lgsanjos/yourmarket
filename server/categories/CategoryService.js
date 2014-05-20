@@ -1,8 +1,9 @@
 var Category = require('./Category.js');
 var SubCategory = require('./SubCategory.js');
 
-function CategoryService() {
+function CategoryService(repository) {
   this.getAllCategories = function() {
+    
   	var cat1 = new Category();
   	cat1.id = 1;
   	cat1.name = 'cate1';
@@ -26,7 +27,7 @@ function CategoryService() {
 	var subcat1 = new SubCategory();
 	subcat1.id = 1;
 	subcat1.category_id = id;
-	subcat1.description = 'subcategory 1 from cat ' + id;
+	subcat1.description = 'subcategory 1 from category ' + id;
 	
 	return [ subcat1 ];
   };

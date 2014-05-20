@@ -1,10 +1,10 @@
-var assert = require("assert")
+var assert = require('assert')
 var should = require('should');
 var CategoryService = require('../categories/CategoryService.js');
 
-describe('CategoryService Integration Test', function() {
+describe('CategoryService', function() {
 	
-	describe('getCategories', function() {
+	describe('Select data', function() {
 
 		it('getAllCategories should return three categories', function() {
 			var categories = new CategoryService().getAllCategories();
@@ -18,7 +18,7 @@ describe('CategoryService Integration Test', function() {
 
 			subcategory.should.have.property('id', '1');
 			subcategory.should.have.property('category_id', '5');
-			subcategory.should.have.property('description', 'subcategory 1 from cat 5');
+			subcategory.should.have.property('description', 'subcategory 1 from category 5');
 		});
 
 		it('getSubcategoriesFromId should return five subcategories', function() {

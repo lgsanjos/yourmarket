@@ -3,15 +3,12 @@ package br.com.sasolucoes.yourmarket.business.category;
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.createUrl;
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.getServerUrl;
 
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.sasolucoes.yourmarket.network.JsonUtils;
 import br.com.sasolucoes.yourmarket.repository.Repository;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class SubcategoryRepository extends Repository {
 
@@ -22,7 +19,7 @@ public class SubcategoryRepository extends Repository {
 	public void update() {
 		URL url = getURL();
 		String result = executeService(url);
-		List<Subcategory> newSubcategories = convertFromJson(result);
+		List<Subcategory> newSubcategories = JsonUtils.convertSubcategory(result);
 		setSubcategories(newSubcategories);
 	}
 	
@@ -47,15 +44,6 @@ public class SubcategoryRepository extends Repository {
 			return;
 		
 		this.subcategories = value;
-	}
-
-	private List<Subcategory> convertFromJson(String result) {
-		Type collectionType = new TypeToken<ArrayList<Subcategory>>(){}.getType();
-		
-		Gson gson = new Gson();
-		List<Subcategory> fromJson = gson.fromJson(result, collectionType);
-		
-		return fromJson;
 	}
 
 	private URL getURL() {

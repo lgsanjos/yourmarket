@@ -1,7 +1,6 @@
 package br.com.sasolucoes.yourmarket;
 
 import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import br.com.sasolucoes.yourmarket.business.category.Category;
 import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.Subcategory;
 import br.com.sasolucoes.yourmarket.business.category.SubcategoryRepository;
-
 
 public class MainActivity extends Activity {
 

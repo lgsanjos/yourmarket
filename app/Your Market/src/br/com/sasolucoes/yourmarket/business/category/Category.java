@@ -23,4 +23,5 @@ public class Category {
 		equals &= id.equals(obj.id);
 		return equals;
 	}
+
 }

@@ -4,27 +4,17 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.sasolucoes.yourmarket.business.category.Category;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class JsonUtils<T> {
+public class JsonUtils {
 	
-	public static <T> JsonUtils<T> get(Class<T> clazz) {
-		try {
-			return new JsonUtils<T>();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
-	
-	public List<T> convert(String json) {
+	public static List<Category> convertCategory(final String json) {
+		Type collectionType = new TypeToken<ArrayList<Category>>(){}.getType();
 		Gson gson = new Gson();
-		Type type = new TypeToken<ArrayList<T>>() {	}.getType();
-		
-		List<T> fromJson = gson.fromJson(json, type);
+		List<Category> fromJson = gson.fromJson(json, collectionType);
 		return fromJson;
 	}
-	
 }

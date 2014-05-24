@@ -12,11 +12,20 @@ public class SellerActivity extends Activity {
 		if (isActivityCreated(savedInstanceState))
 			return;
 		
-		addSellerSummaryFragment();
+		addSellerCompanyFragment();
+		addSellerContactFragment();
 	}
 
-	private void addSellerSummaryFragment() {
-		SellerSummaryFragment fragment = new SellerSummaryFragment(); 
+	private void addSellerCompanyFragment() {
+		SellerCompanyFragment fragment = new SellerCompanyFragment(); 
+		getFragmentManager()
+			.beginTransaction()
+			.add(android.R.id.content, fragment, fragment.getClass().getSimpleName())
+			.commit();
+	}
+
+	private void addSellerContactFragment() {
+		SellerContactFragment fragment = new SellerContactFragment(); 
 		getFragmentManager()
 			.beginTransaction()
 			.add(android.R.id.content, fragment, fragment.getClass().getSimpleName())

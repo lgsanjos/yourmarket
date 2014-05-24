@@ -7,15 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SellerContactFragment extends Fragment {
-
+public class SellerCompanyFragment extends Fragment {
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-	
-		View view = inflater.inflate(R.layout.seller_contact_fragment, container, false);
-		return view;
 		
+		View view = inflater.inflate(R.layout.seller_company_fragment, container, false);
+		return view;
 	}
 
 }

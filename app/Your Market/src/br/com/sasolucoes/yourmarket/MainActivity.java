@@ -1,7 +1,9 @@
 package br.com.sasolucoes.yourmarket;
 
 import java.util.List;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import br.com.sasolucoes.yourmarket.business.category.Category;
 import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.Subcategory;
 import br.com.sasolucoes.yourmarket.business.category.SubcategoryRepository;
+import br.com.sasolucoes.yourmarket.business.seller.SellerActivity;
 
 public class MainActivity extends Activity {
 
@@ -62,15 +65,17 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.sync_categories) {
-			syncCategories();
-			return true;
-		}
-		
-		
-		if (id == R.id.sync_subcategories) {
-			syncSubcategories();
-			return true;
+
+		switch(id) {
+			case R.id.sync_categories:
+				syncCategories();
+				return true;
+			case R.id.sync_subcategories:
+				syncSubcategories();
+				return true;
+			case R.id.seller_activity:
+				startActivity(new Intent(this, SellerActivity.class));
+				return true;
 		}
 		
 		return super.onOptionsItemSelected(item);

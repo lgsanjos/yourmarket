@@ -20,6 +20,12 @@
         android:orderInCategory="120"
         android:title="@string/sync_subcategories"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/seller_activity"
+        android:orderInCategory="130"
+        android:title="@string/contact_lb"
+        app:showAsAction="never"/>
     
 </menu>
 

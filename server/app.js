@@ -1,6 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
-var categoryRoutes = require( __dirname + '/categories/Routes.js');
+var categoryRoutes = require('./categories/CategoryRoutes.js');
+var CompanyRoutes =  require('./company/CompanyRoutes.js');
 
 var app = express();
 
@@ -14,7 +15,8 @@ app.set('view engine', 'jade');
 
 console.log('Setting up routes');
 
-app.use('/', categoryRoutes);
+app.use('/Categories/', categoryRoutes);
+app.use('/Company/', CompanyRoutes);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

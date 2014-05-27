@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">yourmarket</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="sync_categories">Sync categories</string>
     <string name="sync_subcategories">Sync Subcategories</string>
@@ -10,4 +8,18 @@
     <string name="open_categories">Abrir categorias</string>
     
 
+    <string name="contact_lb">Contato </string>
+    <string name="company_lb">Empresa </string>
+    <string name="phone_lb">Telefone </string>
+    <string name="cellphone_lb">Celular </string>
+    <string name="email_lb">E-mail </string>
+
+    <string name="company_name">Momento Mágico Ateliê</string>
+    <string name="phone">44 3028-6104</string>
+    <string name="cellphone">44 9982-6104</string>
+    <string name="email">contato@momentomagicoatelie.com.br</string>
+    
+    
+    
+    
 </resources>

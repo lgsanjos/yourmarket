@@ -13,6 +13,7 @@ import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.SubcategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.ui.CategoryListActivity;
+import br.com.sasolucoes.yourmarket.business.seller.SellerActivity;
 
 public class MainActivity extends Activity {
 
@@ -65,20 +66,22 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.sync_categories) {
-			syncCategories();
-			return true;
-		}
-		
-		if (id == R.id.sync_subcategories) {
-			syncSubcategories();
-			return true;
-		}
-		
-		if (id == R.id.open_categories) {
-			Intent intent = new Intent(this, CategoryListActivity.class);
-			startActivity(intent);
-			return true;
+
+		switch(id) {
+			case R.id.sync_categories:
+				syncCategories();
+				return true;
+			case R.id.sync_subcategories:
+				syncSubcategories();
+				return true;
+			case R.id.seller_activity:
+				startActivity(new Intent(this, SellerActivity.class));
+				return true;
+			case R.id.open_categories:
+				Intent intent = new Intent(this, CategoryListActivity.class);
+				startActivity(intent);
+				return true;
+				
 		}
 		
 		return super.onOptionsItemSelected(item);

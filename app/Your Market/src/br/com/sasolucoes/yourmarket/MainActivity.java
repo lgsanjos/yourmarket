@@ -1,15 +1,18 @@
 package br.com.sasolucoes.yourmarket;
 
 import java.util.List;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import br.com.sasolucoes.yourmarket.business.category.Category;
 import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
-import br.com.sasolucoes.yourmarket.business.category.Subcategory;
-import br.com.sasolucoes.yourmarket.business.category.SubcategoryRepository;
+import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
+import br.com.sasolucoes.yourmarket.business.category.subcategory.SubcategoryRepository;
+import br.com.sasolucoes.yourmarket.business.category.ui.CategoryListActivity;
 
 public class MainActivity extends Activity {
 
@@ -67,9 +70,14 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		
-		
 		if (id == R.id.sync_subcategories) {
 			syncSubcategories();
+			return true;
+		}
+		
+		if (id == R.id.open_categories) {
+			Intent intent = new Intent(this, CategoryListActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		

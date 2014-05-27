@@ -6,5 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="sync_categories">Sync categories</string>
     <string name="sync_subcategories">Sync Subcategories</string>
+    <string name="title_activity_category_list">CategoryListActivity</string>
+    <string name="open_categories">Abrir categorias</string>
+    
 
 </resources>

@@ -21,5 +21,11 @@
         android:title="@string/sync_subcategories"
         app:showAsAction="never"/>
     
+    <item
+        android:id="@+id/open_categories"
+        android:orderInCategory="120"
+        android:title="@string/open_categories"
+        app:showAsAction="never"/>
+    
 </menu>
 

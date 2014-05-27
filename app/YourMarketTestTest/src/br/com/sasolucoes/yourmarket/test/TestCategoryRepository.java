@@ -5,7 +5,7 @@ import java.util.List;
 import junit.framework.TestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import br.com.sasolucoes.yourmarket.business.category.Category;
-import br.com.sasolucoes.yourmarket.business.category.Subcategory;
+import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 import br.com.sasolucoes.yourmarket.network.JsonUtils;
 
 public class TestCategoryRepository extends TestCase {

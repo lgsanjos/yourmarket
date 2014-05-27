@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.sasolucoes.yourmarket.business.category.Category;
-import br.com.sasolucoes.yourmarket.business.category.Subcategory;
+import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket.business.category;
+package br.com.sasolucoes.yourmarket.business.category.subcategory;
 
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.createUrl;
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.getServerUrl;

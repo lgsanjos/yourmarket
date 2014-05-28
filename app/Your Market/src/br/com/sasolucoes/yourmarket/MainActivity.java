@@ -13,7 +13,7 @@ import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.SubcategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.ui.CategoryListActivity;
-import br.com.sasolucoes.yourmarket.business.seller.SellerActivity;
+import br.com.sasolucoes.yourmarket.business.company.ui.SellerActivity;
 
 public class MainActivity extends Activity {
 

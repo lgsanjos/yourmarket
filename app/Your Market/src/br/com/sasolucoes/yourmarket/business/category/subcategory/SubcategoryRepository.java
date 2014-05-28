@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.sasolucoes.yourmarket.network.JsonUtils;
-import br.com.sasolucoes.yourmarket.repository.Repository;
+import br.com.sasolucoes.yourmarket.orm.Repository;
 
 public class SubcategoryRepository extends Repository {
 

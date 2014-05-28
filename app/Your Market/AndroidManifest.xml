@@ -30,7 +30,7 @@
         </activity>
                 
         <activity
-            android:name="br.com.sasolucoes.yourmarket.business.seller.SellerActivity"
+            android:name="br.com.sasolucoes.yourmarket.business.company.ui.SellerActivity"
             android:label="@string/company_lb" >
             <intent-filter>
                 <action android:name="br.com.sasolucoes.yourmarket.business.seller.SellerActivity" />

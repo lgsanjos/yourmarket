@@ -1,4 +1,4 @@
-package br.com.sasolucoes.yourmarket.repository;
+package br.com.sasolucoes.yourmarket.orm;
 
 import java.net.URL;
 import java.util.concurrent.ExecutionException;

@@ -11,7 +11,7 @@ public class ServerUtils {
 	
 	private final static String LIST_CATEGORIES = "get_categories";
 
-	private static String formatedAddress() {
+	public static String formatedAddress() {
 		return "http://" + address + ":" + port + "/";
 	}
 	

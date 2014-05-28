@@ -32,50 +32,49 @@ public class CompanyRefresh extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		Log.d(TAG, "Work in progress...");
 
-		getDataFromServer();
-		processData();
+		String companyData = getCompanyDataFromServer();
+		processData(companyData);
 		
 		Log.d(TAG, "Work done!");
 	}
 
-	private void getDataFromServer() {
-		Log.d(TAG, "getDataFromServer() - start");
-		
-		
-		Log.d(TAG, "getDataFromServer() - finish");
+	private void processData(String data) {
+		Log.d(TAG, "processData()");
 	}
 	
+	
+	private String getCompanyDataFromServer() {
+		Log.d(TAG, "getDataFromServer()");
+		
+		GetFromURLConnectionTask serverConnection = new GetFromURLConnectionTask();
+		serverConnection.execute(getUrl());
+		return serverConnection.getResponse(); 
+	}
 	
 	private URL getUrl() {
 		return ServerUtils.createUrl(ServerUtils.formatedAddress() + GET_COMPANY_ROUTE);
 	}
 	
-	
-	
-
-	private class GetConnectionTask extends AsyncTask<URL, Void, String> {
-
-		@Override
-		protected String doInBackground(URL... urls) {
-			InputStream response = null;
-			
-			response = getServerResponseFromURL(response, urls[0]);
-			
-			if (response == null)
-				return "";
-			
-			return convertInputStreamToString(response);
-			
-		}
+	private class GetFromURLConnectionTask extends AsyncTask<URL, Void, Void> {
+		private StringBuilder response = new StringBuilder();
 		
-		@Override
-		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			if (result.equals(TAG))
-				return;
-
+		public String getResponse() {
+			return response.toString();
 		}
 
+		/* 
+		 * Thread process - where the job is done
+		 */
+		@Override
+		protected Void doInBackground(URL... urls) {
+			InputStream stream = null;
+			
+			stream = getServerResponseFromURL(stream, urls[0]);
+			setResponse(stream);
+			
+			return null;
+		}
+	
 		private InputStream getServerResponseFromURL(InputStream response, URL url) {
 			HttpURLConnection connection = null;
 			
@@ -83,7 +82,7 @@ public class CompanyRefresh extends IntentService {
 				connection = (HttpURLConnection)url.openConnection();
 				response = new BufferedInputStream(connection.getInputStream());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				Log.d(TAG, e.toString());
 				e.printStackTrace();
 			} finally {
 				if (connection != null)
@@ -92,30 +91,24 @@ public class CompanyRefresh extends IntentService {
 			return response;
 		}
 
-		private String convertInputStreamToString(InputStream response) {
-			InputStreamReader in = new InputStreamReader(response);
+		private void setResponse(InputStream stream) {
+			response = new StringBuilder();
+			if (stream == null)
+				return;
+			
+			InputStreamReader in = new InputStreamReader(stream);
 			BufferedReader br = new BufferedReader(in); 
-			
 			String textline = null;
-			StringBuilder builder = new StringBuilder(); 
-			
 			try {
 				while((textline = br.readLine()) != null) {
-					builder.append(textline);
+					response.append(textline);
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				Log.d(TAG, e.toString());
 				e.printStackTrace();
 			}
-			
-			return builder.toString();
 		}
+
 	}
 	
-	private void processData() {
-		Log.d(TAG, "processData() - start");
-		
-		Log.d(TAG, "processData() - finish");
-	}
-
 }

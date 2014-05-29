@@ -13,6 +13,7 @@ import br.com.sasolucoes.yourmarket.business.category.CategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 import br.com.sasolucoes.yourmarket.business.category.subcategory.SubcategoryRepository;
 import br.com.sasolucoes.yourmarket.business.category.ui.CategoryListActivity;
+import br.com.sasolucoes.yourmarket.business.company.service.CompanyRefresh;
 import br.com.sasolucoes.yourmarket.business.company.ui.SellerActivity;
 
 public class MainActivity extends Activity {
@@ -81,7 +82,9 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent(this, CategoryListActivity.class);
 				startActivity(intent);
 				return true;
-				
+			case R.id.action_refresh_company:
+				startService(new Intent(this, CompanyRefresh.class));
+				return true;
 		}
 		
 		return super.onOptionsItemSelected(item);

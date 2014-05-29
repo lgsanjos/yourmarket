@@ -14,10 +14,14 @@
     <string name="cellphone_lb">Celular </string>
     <string name="email_lb">E-mail </string>
 
+    
+    <string name="refresh_company">Atualizar empresa</string>
     <string name="company_name">Momento Mágico Ateliê</string>
     <string name="phone">44 3028-6104</string>
     <string name="cellphone">44 9982-6104</string>
     <string name="email">contato@momentomagicoatelie.com.br</string>
+    
+    
     
     
     

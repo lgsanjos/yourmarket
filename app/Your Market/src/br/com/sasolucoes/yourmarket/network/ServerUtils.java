@@ -5,8 +5,6 @@ import java.net.URL;
 
 public class ServerUtils {
 	
-	public final static String GET_RESPONSE_FROM_URL_FAIL = "getResponseFromURLFail"; 
-	public final static String GET_RESPONSE_FROM_URL_SUCCESS = "getResponseFromURLSuccess";
 	public final static String REQUEST_METHOD = "GET";
 	
 	public final static int READ_TIMEOUT = 10000;

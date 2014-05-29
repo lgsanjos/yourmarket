@@ -29,9 +29,16 @@
     
     <item
         android:id="@+id/open_categories"
-        android:orderInCategory="120"
+        android:orderInCategory="140"
         android:title="@string/open_categories"
         app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/action_refresh_company"
+        android:orderInCategory="150"
+        android:title="@string/refresh_company"
+        android:showAsAction="never"/>
+    
     
 </menu>
 

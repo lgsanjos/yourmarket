@@ -1,11 +1,8 @@
 package br.com.sasolucoes.yourmarket.business.company.service;
 
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.CONNECT_TIMEOUT;
-import static br.com.sasolucoes.yourmarket.network.ServerUtils.GET_RESPONSE_FROM_URL_FAIL;
-import static br.com.sasolucoes.yourmarket.network.ServerUtils.GET_RESPONSE_FROM_URL_SUCCESS;
 import static br.com.sasolucoes.yourmarket.network.ServerUtils.READ_TIMEOUT;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +21,8 @@ import br.com.sasolucoes.yourmarket.network.ServerUtils;
 
 public class CompanyRefresh extends IntentService {
 	static final String TAG = "CompanyRefresh";
-	static final String GET_COMPANY_ROUTE = "get_company";
+	static final String COMPANY_MODULE_ROUTE = "company/";
+	static final String GET_COMPANY_ROUTE = "get_company/";
 
 	public CompanyRefresh() {
 		super(TAG);
@@ -35,7 +33,7 @@ public class CompanyRefresh extends IntentService {
 	 */
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		Log.d(TAG, "Work in progress...");
+		Log.d(TAG, "onHandleIntent");
 
 		if (!isNetworkConnected())
 			Log.d(TAG, "Network unavaiable.");
@@ -44,6 +42,8 @@ public class CompanyRefresh extends IntentService {
 	}
 
 	private boolean isNetworkConnected() {
+		Log.d(TAG, "isNetworkConnected");
+		
 		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		
@@ -51,102 +51,83 @@ public class CompanyRefresh extends IntentService {
 	}
 
 	private URL getUrl() {
-		return ServerUtils.createUrl(ServerUtils.formatedAddress() + GET_COMPANY_ROUTE);
+		Log.d(TAG, "getUrl");
+		
+		return ServerUtils.createUrl(ServerUtils.formatedAddress() + COMPANY_MODULE_ROUTE + GET_COMPANY_ROUTE);
 	}
 
 	private class GetFromURLConnectionTask extends AsyncTask<URL, Void, String> {
-		private InputStream stream = null;
-		
-		public InputStream getStreamResponse() {
-			return stream;
-		}
-
 		/* 
 		 * Thread process - where the job is done
 		 */
 		@Override
 		protected String doInBackground(URL... urls) {
+			Log.d(TAG, "doInBackground");
+			
 			try {
-				return getResponseFromURL(urls[0]);
-//				
-//				if (!getResult.equals(GET_RESPONSE_FROM_URL_SUCCESS))
-//					return getResult; 
-//				
-//				convertInputStreamToString(this.stream);
-//				return getResult;
+				InputStream in = getResponseFromURL(urls[0]);
+				String convertedStream = convertInputStreamToString(in);
+				Log.d(TAG, "Http GET response is: " + convertedStream);
+				
+				return convertedStream;
+				
 			} catch (IOException e) {
 				Log.d(TAG, e.toString());
-				return GET_RESPONSE_FROM_URL_FAIL;
+				return "";
 			}
 		}
 		
 		@Override
 		protected void onPostExecute(String result) {
+			Log.d(TAG, "onPostExecute");
+
 			// convert the InputStream
-			if (!result.equals(GET_RESPONSE_FROM_URL_SUCCESS))
+			if (result.equals(""))
 				return;
 			
-			String convertedStream = convertInputStreamToString(this.stream);
-			
-			// update database
+			// TODO: update database
 		}
 
 
-		private String getResponseFromURL(URL url) throws IOException {
+		private InputStream getResponseFromURL(URL url) throws IOException {
+			Log.d(TAG, "getResponseFromURL");
+			
 			HttpURLConnection connection = null;
+			connection = (HttpURLConnection)url.openConnection();
+			connection.setReadTimeout(READ_TIMEOUT);
+			connection.setConnectTimeout(CONNECT_TIMEOUT);
+			connection.setRequestMethod(ServerUtils.REQUEST_METHOD);
+			connection.setDoInput(true);
+			connection.connect();
 			
-			try {
-				connection = (HttpURLConnection)url.openConnection();
-				connection.setReadTimeout(READ_TIMEOUT);
-				connection.setConnectTimeout(CONNECT_TIMEOUT);
-				connection.setRequestMethod(ServerUtils.REQUEST_METHOD);
-				connection.setDoInput(true);
-				connection.connect();
-				
-				int response = connection.getResponseCode();
-				Log.d(TAG, "The response is: " + response);
-				
-				setStreamResponse(connection.getInputStream());
-			} finally {
-				if (connection != null)
-					connection.disconnect();
-			}
-			return GET_RESPONSE_FROM_URL_SUCCESS;
+			int response = connection.getResponseCode();
+			Log.d(TAG, "Http GET code response is: " + response);
+			
+			return connection.getInputStream();
 		}
 
-		private void setStreamResponse(InputStream stream) {
-			this.stream = stream;
-		}
-		
-		
 		
 		private String convertInputStreamToString(InputStream stream) {
-			StringBuilder response = new StringBuilder();
+			Log.d(TAG, "convertInputStreamToString");
+			
 			if (stream == null)
 				return "";
 			
-			InputStreamReader in = new InputStreamReader(stream);
-			BufferedReader br = new BufferedReader(in); 
-			String textline = null;
+			StringBuilder response = new StringBuilder();
+			BufferedReader br = new BufferedReader(new InputStreamReader(stream)); 
+			
 			try {
+				String textline = null;
 				while((textline = br.readLine()) != null) {
 					response.append(textline);
 				}
 			} catch (IOException e) {
 				Log.d(TAG, e.toString());
-				e.printStackTrace();
 			}
 			
 			return response.toString();
 		}
 		
-		private InputStream getCompanyDataFromServer() {
-			Log.d(TAG, "getDataFromServer()");
-			
-			GetFromURLConnectionTask serverConnection = new GetFromURLConnectionTask();
-			serverConnection.execute(getUrl());
-			return serverConnection.getStreamResponse(); 
-		}
 	}
 	
 	

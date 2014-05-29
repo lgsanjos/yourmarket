@@ -7,8 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -17,6 +22,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
+import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
+import br.com.sasolucoes.yourmarket.business.company.orm.Company;
 import br.com.sasolucoes.yourmarket.network.ServerUtils;
 
 public class CompanyRefresh extends IntentService {
@@ -84,11 +91,20 @@ public class CompanyRefresh extends IntentService {
 		protected void onPostExecute(String result) {
 			Log.d(TAG, "onPostExecute");
 			
-			// convert the InputStream
 			if (result.equals(""))
 				return;
 			
+			
+
+			Company company = convertFromJsonToCompany(result);
+			
 			// TODO: update database
+		}
+
+		private Company convertFromJsonToCompany(String result) {
+			Type type = new TypeToken<ArrayList<Company>>(){}.getType();
+			Gson gson = new Gson();
+			return gson.fromJson(result, type);
 		}
 
 
@@ -108,7 +124,6 @@ public class CompanyRefresh extends IntentService {
 			
 			return connection.getInputStream();
 		}
-
 		
 		private String convertInputStreamToString(InputStream stream) {
 			Log.d(TAG, "convertInputStreamToString");
@@ -130,7 +145,6 @@ public class CompanyRefresh extends IntentService {
 			
 			return response.toString();
 		}
-		
 	}
 	
 	

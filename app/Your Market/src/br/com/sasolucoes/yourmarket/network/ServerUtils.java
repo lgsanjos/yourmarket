@@ -5,12 +5,21 @@ import java.net.URL;
 
 public class ServerUtils {
 	
+	public final static String GET_RESPONSE_FROM_URL_FAIL = "getResponseFromURLFail"; 
+	public final static String GET_RESPONSE_FROM_URL_SUCCESS = "getResponseFromURLSuccess";
+	public final static String REQUEST_METHOD = "GET";
+	
+	public final static int READ_TIMEOUT = 10000;
+	public final static int CONNECT_TIMEOUT = 15000;
+	
 	public final static int HTTP_STATUS_CODE_OK = 200;
 	private final static String port = "8080";
 	private final static String address = "192.168.56.1";
 	
 	private final static String LIST_CATEGORIES = "get_categories";
 
+	private ServerUtils() {}
+	
 	public static String formatedAddress() {
 		return "http://" + address + ":" + port + "/";
 	}
@@ -31,5 +40,4 @@ public class ServerUtils {
 	public static URL getAllCategoriesUrl() {
 		return createUrl(formatedAddress() + LIST_CATEGORIES);
 	}
-
 }

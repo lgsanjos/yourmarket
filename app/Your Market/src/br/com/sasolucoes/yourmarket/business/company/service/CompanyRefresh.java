@@ -29,7 +29,7 @@ public class CompanyRefresh extends IntentService {
 	}
 
 	/* 
-	 * Worker thread - where the job is done! 
+	 * Worker thread - where the service is executed. 
 	 */
 	@Override
 	protected void onHandleIntent(Intent intent) {
@@ -58,7 +58,7 @@ public class CompanyRefresh extends IntentService {
 
 	private class GetFromURLConnectionTask extends AsyncTask<URL, Void, String> {
 		/* 
-		 * Thread process - where the job is done
+		 * Thread process - where the network task is done.
 		 */
 		@Override
 		protected String doInBackground(URL... urls) {
@@ -77,10 +77,13 @@ public class CompanyRefresh extends IntentService {
 			}
 		}
 		
+		/* 
+		 * Post thread process - where the database is updated
+		 */
 		@Override
 		protected void onPostExecute(String result) {
 			Log.d(TAG, "onPostExecute");
-
+			
 			// convert the InputStream
 			if (result.equals(""))
 				return;

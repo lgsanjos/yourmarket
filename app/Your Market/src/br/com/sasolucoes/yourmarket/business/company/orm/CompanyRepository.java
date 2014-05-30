@@ -39,11 +39,11 @@ public class CompanyRepository {
 		return context.getContentResolver().delete(uri, null, null);
 	}
 	
-	public static int delete(Context context, String selection) {
+	public static int deleteAll(Context context) {
 		if (context == null)
 			return 0;
 
-		return context.getContentResolver().delete(CONTENT_URI, selection, null);
+		return context.getContentResolver().delete(CONTENT_URI, null, null);
 	}
 	
 }

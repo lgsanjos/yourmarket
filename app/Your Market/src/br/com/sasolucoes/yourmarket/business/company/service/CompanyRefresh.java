@@ -99,7 +99,7 @@ public class CompanyRefresh extends IntentService {
 			if (companies.isEmpty())
 				return;
 			
-			int rowsAffected = CompanyRepository.delete(CompanyRefresh.this, null);
+			int rowsAffected = CompanyRepository.deleteAll(CompanyRefresh.this);
 			Log.d(TAG, "Company rows delete: " + rowsAffected);
 			
 			rowsAffected = CompanyRepository.insert(CompanyRefresh.this, companies.get(0));

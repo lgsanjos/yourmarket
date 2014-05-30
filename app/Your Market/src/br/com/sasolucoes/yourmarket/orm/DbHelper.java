@@ -43,7 +43,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		
+		Log.d(TAG, String.format("onUpgrade(%d, %d", oldVersion, newVersion));
 
 	}
 

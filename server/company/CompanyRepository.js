@@ -10,7 +10,7 @@ function CompanyRepository() {
 		reg.email = 'contato@momentomagicoatelie.com.br';
 		reg.logo = 'logo.png';
 
-		return reg;
+		return [ reg ];
 	};
 };
 

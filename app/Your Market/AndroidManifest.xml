@@ -40,6 +40,10 @@
         </activity>
         
         <service android:name="br.com.sasolucoes.yourmarket.business.company.service.CompanyRefresh"/>"
+        <provider 
+            android:name="br.com.sasolucoes.yourmarket.business.company.orm.CompanyProvider"
+            android:authorities="br.com.sasolucoes.yourmarket.business.company.orm.CompanyProvider"
+            android:exported="false"/>
         
     </application>
 

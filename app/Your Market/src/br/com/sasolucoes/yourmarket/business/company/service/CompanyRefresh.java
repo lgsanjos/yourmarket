@@ -11,9 +11,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.util.List;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -22,9 +20,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
-import br.com.sasolucoes.yourmarket.business.category.subcategory.Subcategory;
 import br.com.sasolucoes.yourmarket.business.company.orm.Company;
+import br.com.sasolucoes.yourmarket.business.company.orm.CompanyRepository;
 import br.com.sasolucoes.yourmarket.network.ServerUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class CompanyRefresh extends IntentService {
 	static final String TAG = "CompanyRefresh";
@@ -94,14 +95,20 @@ public class CompanyRefresh extends IntentService {
 			if (result.equals(""))
 				return;
 			
+			List<Company> companies = convertFromJsonToCompany(result);
+			if (companies.isEmpty())
+				return;
 			
-
-			Company company = convertFromJsonToCompany(result);
+			int rowsAffected = CompanyRepository.delete(CompanyRefresh.this, null);
+			Log.d(TAG, "Company rows delete: " + rowsAffected);
 			
-			// TODO: update database
+			rowsAffected = CompanyRepository.insert(CompanyRefresh.this, companies.get(0));
+			Log.d(TAG, "Company rows inserted: " + rowsAffected);
 		}
 
-		private Company convertFromJsonToCompany(String result) {
+		private List<Company> convertFromJsonToCompany(String result) {
+			Log.d(TAG, "convertFromJsonToCompany");
+			
 			Type type = new TypeToken<ArrayList<Company>>(){}.getType();
 			Gson gson = new Gson();
 			return gson.fromJson(result, type);
